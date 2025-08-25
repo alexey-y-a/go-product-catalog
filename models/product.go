@@ -1,0 +1,13 @@
+package models
+
+import (
+	"github.com/lib/pq"
+	"gorm.io/gorm"
+)
+
+type Product struct {
+	gorm.Model
+	Name        string         `json:"name" validate:"required,min=2,max=100"`
+	Description string         `json:"description" validate:"required"`
+	Images      pq.StringArray `json:"images" gorm:"type:text[]" validate:"dive,uri"`
+}
